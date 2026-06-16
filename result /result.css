@@ -19,40 +19,36 @@ body {
 =================================== */
 
 header {
-  width: 100%;
-  max-width: 900px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
 
 /* BrainSync LOGO */
-header . logo {
-  font-family: "Playfair Display", serif;
-  font-size: 2rem;
-  font-weight: 900;
-  color: #d4a317; /* gold */
+header .logo {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #d4a317;
 }
 
 /* NAV LINKS */
 nav a {
-  text-decoration: none;
-  color: #6b5e4a; /* taupe-like */
-  font-weight: 500;
-  margin-right: 20px;
-  transition: 0.3s ease;
+    text-decoration: none;
+    color: #6b5e4a;
+    font-weight: 500;
+    margin-right: 20px;
+    transition: 0.3s ease;
 }
 
-/* Hover + active state */
+/* Hover + active */
 nav a:hover,
 nav a.active {
-  color: #1a1a1a; /* obsidian black */
-}
-
-/* Playfair utility class */
-.playfair-heading {
-  font-family: "Playfair Display", serif;
+    color: #1a1a1a;
 }
 
 /* ===================================
@@ -62,10 +58,11 @@ nav a.active {
 .results-card {
     width: 100%;
     max-width: 420px;
-    background: #fff;
+    margin: 40px auto;
+    background: #ffffff;
     border-radius: 18px;
     padding: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     text-align: center;
 }
 
@@ -85,7 +82,7 @@ nav a.active {
 }
 
 /* ===================================
-   SCORE CIRCLE (FIXED PROGRESS)
+   SCORE CIRCLE
 =================================== */
 
 .score-circle {
@@ -98,10 +95,9 @@ nav a.active {
     align-items: center;
     justify-content: center;
 
-    /* IMPORTANT FIX */
     background: conic-gradient(
-        #d4a317 0% calc(var(--progress, 0) * 1%),
-        #e6e6e6 0%
+        #d4a317 calc(var(--progress, 0) * 1%),
+        #e6e6e6 0
     );
 
     position: relative;
@@ -151,7 +147,7 @@ nav a.active {
     gap: 12px;
 }
 
-/* Restart */
+/* Restart button */
 .btn.primary-btn {
     background: #d4a317;
     color: #000;
@@ -160,11 +156,16 @@ nav a.active {
     border-radius: 12px;
     font-weight: 700;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
-/* Share */
+.btn.primary-btn:hover {
+    background: #b88f12;
+}
+
+/* Share button */
 #shareBtn {
-    background: white;
+    background: #fff;
     border: 1px solid #ddd;
     padding: 12px;
     border-radius: 12px;
@@ -172,6 +173,7 @@ nav a.active {
     cursor: pointer;
 }
 
+/* Home button */
 #startQuizBtn {
     background-color: #d4a317;
     border: none;
@@ -186,5 +188,3 @@ nav a.active {
 #startQuizBtn:hover {
     background-color: #b88f12;
 }
-
-/*
