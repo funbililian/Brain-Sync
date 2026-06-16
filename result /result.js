@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!storedResults) {
         window.location.href = "../index.html";
         return;
+    const circle = document.querySelector(".score-circle");
+if (circle) {
+    circle.style.setProperty("--progress", results.percentage);
+}
     }
 
     const results = JSON.parse(storedResults);
