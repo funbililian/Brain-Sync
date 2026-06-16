@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap");
+
 /* ===================================
    GLOBAL RESET
 =================================== */
@@ -9,7 +11,7 @@
 }
 
 body {
-  font-family: "Playfair Display", serif;
+  font-family: "DM Sans", sans-serif;
   background-color: #f7f4eb;
   color: #1a1a1a;
 }
@@ -29,11 +31,33 @@ header {
 }
 
 /* BrainSync LOGO */
-header .logo {
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.logo-badge {
+  background: #d4a418;
+  color: #000000;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(15, 12, 7, 0.05);
+}
+
+.logo-container h2 {
   font-family: "Playfair Display", serif;
-  font-size: 2rem;
-  font-weight: 700 !important;
-  color: #d4a317 !important;
+  color: #d4a317;
+  font-weight: 700;
 }
 
 /* ===================================
@@ -54,6 +78,7 @@ header .logo {
 /* Title */
 .results-title {
   font-size: 24px;
+  font-family: "Playfair Display", serif;
   font-weight: 800;
   color: #d4a317;
   margin-bottom: 10px;
@@ -75,13 +100,10 @@ header .logo {
   height: 130px;
   border-radius: 50%;
   margin: 20px auto;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: conic-gradient(#d4a317 calc(var(--progress, 0) * 1%), #e6e6e6 0);
-
   position: relative;
 }
 
@@ -115,6 +137,7 @@ header .logo {
 .result-row {
   display: flex;
   justify-content: space-between;
+  color: #867555;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
 }
@@ -132,41 +155,65 @@ header .logo {
 /* Restart button */
 .btn.primary-btn {
   background: #d4a317;
-  color: #000;
+  color: #fff;
   border: none;
   padding: 12px;
+  margin-top: 12px;
   border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .btn.primary-btn:hover {
   background: #b88f12;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Share button */
 #shareBtn {
   background: #fff;
+  color: #867555;
   border: 1px solid #ddd;
   padding: 12px;
   border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
+#shareBtn:hover {
+  color: #867555;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
 /* Home button */
 #startQuizBtn {
   background-color: #d4a317;
   border: none;
-  color: #000;
-  padding: 8px 14px;
+  color: #fff;
+  padding: 8px 16px;
   border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 #startQuizBtn:hover {
   background-color: #b88f12;
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }

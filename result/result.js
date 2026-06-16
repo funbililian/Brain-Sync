@@ -119,6 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // ===================================
 
 function retakeQuiz() {
-  localStorage.removeItem("quizResults");
-  window.location.href = "../quiz/index.html";
+  const results = JSON.parse(localStorage.getItem("quizResults"));
+  if (results?.category) {
+    window.location.href = `../quiz/index.html?category=${results.category}`;
+  } else {
+    window.location.href = "../index.html";
+  }
 }
