@@ -1,5 +1,5 @@
 /* ===================================
-   GLOBAL
+   GLOBAL RESET
 =================================== */
 
 * {
@@ -15,18 +15,30 @@ body {
 }
 
 /* ===================================
-   HEADER
+   HEADER FIX (RIGHT ALIGN BUTTON)
 =================================== */
 
 header {
     width: 100%;
     max-width: 420px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between; /* FIX */
+    align-items: center;
 }
 
-/* Brain Sync logo */
+/* Brain Sync BRAND (FIX BOLD + GOLD) */
 .playfair-heading {
-    font-family: "Playfair Display", serif;
+    font-weight: 800; /* FIX BOLDER */
+    color: #d4a317 !important; /* FORCE GOLD */
+    font-size: 26px;
+}
+
+/* Results link */
+header a {
+    font-weight: 600;
+    color: #000;
+    border-bottom: 2px solid #bfa029;
 }
 
 /* ===================================
@@ -34,30 +46,29 @@ header {
 =================================== */
 
 .results-page {
-    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px 10px;
+    padding: 20px;
 }
 
 /* ===================================
-   RESULTS CARD
+   CARD
 =================================== */
 
 .results-card {
     width: 100%;
     max-width: 420px;
-    background: #ffffff;
+    background: #fff;
     border-radius: 18px;
-    padding: 25px 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     text-align: center;
 }
 
 /* Title */
 .results-title {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 800;
     color: #d4a317;
     margin-bottom: 10px;
 }
@@ -70,23 +81,23 @@ header {
 }
 
 /* ===================================
-   SCORE CIRCLE
+   SCORE CIRCLE (FIXED PROGRESS)
 =================================== */
 
 .score-circle {
     width: 130px;
     height: 130px;
     border-radius: 50%;
-    margin: 15px auto 25px auto;
+    margin: 20px auto;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    /* IMPORTANT FIX */
     background: conic-gradient(
-        #d4a317 0%,
-        #d4a317 var(--progress, 0%),
-        #eee var(--progress, 0%)
+        #d4a317 0% calc(var(--progress, 0) * 1%),
+        #e6e6e6 0%
     );
 
     position: relative;
@@ -106,19 +117,17 @@ header {
 .score-circle span {
     position: relative;
     font-size: 20px;
-    font-weight: bold;
-    color: #1a1a1a;
+    font-weight: 800;
     z-index: 2;
 }
 
 /* ===================================
-   RESULTS DETAILS
+   DETAILS
 =================================== */
 
 .results-details {
     text-align: left;
     margin-top: 10px;
-    margin-bottom: 20px;
 }
 
 .result-row {
@@ -126,17 +135,6 @@ header {
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
-}
-
-.label {
-    font-size: 14px;
-    color: #777;
-}
-
-.value {
-    font-size: 14px;
-    font-weight: 600;
-    color: #222;
 }
 
 /* ===================================
@@ -149,75 +147,34 @@ header {
     gap: 12px;
 }
 
-/* Primary button (Restart Quiz) */
+/* Restart */
 .btn.primary-btn {
-    background-color: #d4a317;
+    background: #d4a317;
     color: #000;
     border: none;
-    padding: 12px 14px;
+    padding: 12px;
     border-radius: 12px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: 0.3s ease;
 }
 
-.btn.primary-btn:hover {
-    background-color: #b88f12;
-    transform: translateY(-2px);
-}
-
-/* Share button override */
+/* Share */
 #shareBtn {
-    background-color: #ffffff;
-    border: 1px solid #e5e5e5;
-    color: #333;
-    padding: 12px 14px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 12px;
     border-radius: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s ease;
 }
 
-#shareBtn:hover {
-    background-color: #f2f2f2;
-    transform: translateY(-2px);
-}
-
-/* ===================================
-   HEADER BUTTON
-=================================== */
-
+/* Start Quiz (RIGHT SIDE FIX) */
 #startQuizBtn {
-    background-color: #d4a317;
+    margin-left: auto; /* PUSH RIGHT */
+    background: #d4a317;
+    color: black;
     border: none;
-    color: #000;
     padding: 8px 14px;
     border-radius: 20px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-#startQuizBtn:hover {
-    background-color: #b88f12;
-}
-
-/* ===================================
-   RESPONSIVE
-=================================== */
-
-@media (max-width: 480px) {
-    .results-card {
-        padding: 20px 15px;
-    }
-
-    .score-circle {
-        width: 120px;
-        height: 120px;
-    }
-
-    .score-circle::after {
-        width: 90px;
-        height: 90px;
-    }
+    font-weight: 700;
 }
