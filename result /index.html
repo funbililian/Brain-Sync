@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+
+    <link rel="stylesheet" href="results.css">
+</head>
+<body>
+
+    <main class="results-page">
+
+        <section class="results-card">
+
+            <h1 class="results-title">
+                Quiz Completed 🎉
+            </h1>
+
+            <p id="message" class="performance-message">
+                Loading...
+            </p>
+
+            <div class="score-circle">
+                <span id="percentage">0%</span>
+            </div>
+
+            <div class="results-details">
+
+                <div class="result-row">
+                    <span class="label">Category</span>
+                    <span id="category" class="value">
+                        -
+                    </span>
+                </div>
+
+                <div class="result-row">
+                    <span class="label">Score</span>
+                    <span class="value">
+                        <span id="score">0</span> /
+                        <span id="total">0</span>
+                    </span>
+                </div>
+
+                <div class="result-row">
+                    <span class="label">
+                        Questions Answered
+                    </span>
+                    <span id="answered" class="value">
+                        0
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="action-buttons">
+
+                <button
+                    class="btn primary-btn"
+                    onclick="retakeQuiz()"
+                >
+                    Retake Quiz
+                </button>
+
+                <button
+                    class="btn secondary-btn"
+                    onclick="playAgain()"
+                >
+                    Choose Another Category
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="results.js"></script>
+
+</body>
+</html>
