@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="result.css">
     <title>Brain Sync</title>
-      <link rel="stylesheet" href="Quiz.css" />
+      <link rel="stylesheet" href="quiz.css" />
       <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
@@ -24,6 +24,21 @@
           <span class="playfair-heading text-2xl font-bold text-[#d4a317]">
             Brain Sync.
           </span>
+              <a
+            href="#"
+            class="playfair-heading text-black border-b-2 border-[#bfa029]"
+          >
+            Results
+          </a>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button
+            id="startQuizBtn"
+            class="playfair-heading bg-[#d4a317] text-black font-semibold text-xs px-4 py-2 rounded-full"
+          >
+            Start Quiz
+          </button>
+        </div>
 </head>
 <body>
 
@@ -77,15 +92,15 @@
                     class="btn primary-btn"
                     onclick="retakeQuiz()"
                 >
-                    Retake Quiz
+                    Restart Quiz
                 </button>
-
-                <button
-                    class="btn secondary-btn"
-                    onclick="playAgain()"
-                >
-                    Choose Another Category
-                </button>
+        <button
+          id="shareBtn"
+          class="bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-3 px-4 rounded-xl shadow-sm flex items-center justify-center space-x-2 transition-all hover:translate-y-[-1px]"
+        >
+          <i class="fa-solid fa-share-nodes text-sm text-rose-400"></i>
+          <span class="text-sm">Share Score</span>
+        </button>
 
             </div>
 
