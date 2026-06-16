@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Brain Sync - Quiz Results</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="result.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo-container">
+        <div class="logo-badge">BS</div>
+        <h2>BrainSync</h2>
+      </div>
+
+      <button id="startQuizBtn">Home</button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="results-page">
+      <section class="results-card">
+        <h1 class="results-title">Quiz Completed 🎉</h1>
+
+        <p id="message" class="performance-message">Loading...</p>
+
+        <div class="score-circle">
+          <span id="percentage">0%</span>
+        </div>
+
+        <div class="results-details">
+          <div class="result-row">
+            <span class="label">Category</span>
+            <span id="category" class="value">-</span>
+          </div>
+
+          <div class="result-row">
+            <span class="label">Score</span>
+            <span class="value">
+              <span id="score">0</span> /
+              <span id="total">0</span>
+            </span>
+          </div>
+
+          <div class="result-row">
+            <span class="label">Questions Answered</span>
+            <span id="answered" class="value">0</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn primary-btn" onclick="retakeQuiz()">
+            Restart Quiz
+          </button>
+
+          <button id="shareBtn">
+            <span class="text-sm">Share Score</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="result.js"></script>
+  </body>
+</html>
