@@ -32,23 +32,8 @@ header {
 header .logo {
     font-family: "Playfair Display", serif;
     font-size: 2rem;
-    font-weight: 800 !important;
+    font-weight: 700 !important;
     color: #d4a317 !important;
-}
-
-/* NAV LINKS */
-nav a {
-    text-decoration: none;
-    color: #6b5e4a;
-    font-weight: 500;
-    margin-right: 20px;
-    transition: 0.3s ease;
-}
-
-/* Hover + active */
-nav a:hover,
-nav a.active {
-    color: #1a1a1a;
 }
 
 /* ===================================
