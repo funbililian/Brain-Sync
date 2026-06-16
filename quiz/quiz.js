@@ -411,7 +411,7 @@ function finishQuiz() {
     );
 
     window.location.href =
-        "../results/index.html";
+        "../result/index.html";
 }
 
 // ===================================
