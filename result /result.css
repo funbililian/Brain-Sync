@@ -15,7 +15,7 @@ body {
 }
 
 /* ===================================
-   HEADER FIX (RIGHT ALIGN BUTTON)
+   HEADER (BrainSync)
 =================================== */
 
 header {
@@ -27,38 +27,32 @@ header {
   padding: 20px;
 }
 
-header .logo {
+/* BrainSync LOGO */
+header {
   font-family: "Playfair Display", serif;
   font-size: 2rem;
   font-weight: 900;
-  color: var(--gold);
+  color: #d4a317; /* gold */
 }
 
+/* NAV LINKS */
 nav a {
   text-decoration: none;
-  color: var(--taupe);
+  color: #6b5e4a; /* taupe-like */
   font-weight: 500;
   margin-right: 20px;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
+/* Hover + active state */
 nav a:hover,
 nav a.active {
-  color: var(--obsidian);
+  color: #1a1a1a; /* obsidian black */
 }
 
+/* Playfair utility class */
 .playfair-heading {
   font-family: "Playfair Display", serif;
-}
-
-/* ===================================
-   MAIN LAYOUT
-=================================== */
-
-.results-page {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
 }
 
 /* ===================================
