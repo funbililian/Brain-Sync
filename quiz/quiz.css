@@ -107,7 +107,7 @@ header{
 }
 
 .header-text p{
-  color:var(--muted);
+  color:#d4a317;
   font-size:1.1rem;
 }
 
