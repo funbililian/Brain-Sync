@@ -1,5 +1,8 @@
 # Brain-Sync
 
+Project link
+https://brain-sync-three.vercel.app/
+
 QUIZ APPLICATION FRONTEND DEVELOPMENT PROJECT
 
 Project Title
