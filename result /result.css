@@ -1,29 +1,5 @@
 /* ===================================
-   GOOGLE FONTS
-=================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@400;700;900&display=swap');
-
-/* ===================================
-   ROOT VARIABLES
-=================================== */
-
-:root {
-    --gold: #D4A418;
-    --taupe: #867555;
-    --emerald: #22C55E;
-    --crimson: #EF4444;
-    --obsidian: #0F0C07;
-    --ivory: #FAF7F0;
-
-    --shadow:
-        0 10px 30px rgba(0, 0, 0, 0.08);
-
-    --radius: 20px;
-}
-
-/* ===================================
-   RESET
+   GLOBAL
 =================================== */
 
 * {
@@ -32,77 +8,65 @@
     box-sizing: border-box;
 }
 
-/* ===================================
-   BODY
-=================================== */
-
 body {
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 2rem;
-
-    background: var(--ivory);
-
-    font-family: "DM Sans", sans-serif;
-    color: var(--obsidian);
+    font-family: "Playfair Display", serif;
+    background-color: #f7f4eb;
+    color: #1a1a1a;
 }
 
 /* ===================================
-   RESULTS PAGE
+   HEADER
+=================================== */
+
+header {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* Brain Sync logo */
+.playfair-heading {
+    font-family: "Playfair Display", serif;
+}
+
+/* ===================================
+   MAIN LAYOUT
 =================================== */
 
 .results-page {
     width: 100%;
-    max-width: 700px;
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
 }
 
 /* ===================================
-   CARD
+   RESULTS CARD
 =================================== */
 
 .results-card {
-
-    background: white;
-
-    border-radius: var(--radius);
-
-    padding: 3rem;
-
-    box-shadow: var(--shadow);
-
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     text-align: center;
 }
 
-/* ===================================
-   TITLE
-=================================== */
-
+/* Title */
 .results-title {
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 3rem;
-
+    font-size: 24px;
     font-weight: 700;
-
-    margin-bottom: 0.75rem;
+    color: #d4a317;
+    margin-bottom: 10px;
 }
 
-/* ===================================
-   PERFORMANCE MESSAGE
-=================================== */
-
+/* Message */
 .performance-message {
-
-    font-size: 1.1rem;
-
-    color: var(--taupe);
-
-    margin-bottom: 2rem;
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 18px;
 }
 
 /* ===================================
@@ -110,36 +74,41 @@ body {
 =================================== */
 
 .score-circle {
-
-    width: 180px;
-    height: 180px;
-
-    margin: 0 auto 2rem;
-
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-
-    border: 8px solid var(--gold);
+    margin: 15px auto 25px auto;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    background: linear-gradient(
-        135deg,
-        rgba(212,164,24,.08),
-        rgba(212,164,24,.02)
+    background: conic-gradient(
+        #d4a317 0%,
+        #d4a317 var(--progress, 0%),
+        #eee var(--progress, 0%)
     );
+
+    position: relative;
 }
 
+/* Inner white circle */
+.score-circle::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+}
+
+/* Percentage text */
 .score-circle span {
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 2.8rem;
-
-    font-weight: 700;
-
-    color: var(--gold);
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a1a1a;
+    z-index: 2;
 }
 
 /* ===================================
@@ -147,40 +116,27 @@ body {
 =================================== */
 
 .results-details {
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 1rem;
-
-    margin-bottom: 2rem;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .result-row {
-
     display: flex;
     justify-content: space-between;
-    align-items: center;
-
-    padding: 1rem 1.2rem;
-
-    border-radius: 12px;
-
-    background: rgba(134,117,85,.08);
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
 }
 
 .label {
-
-    font-weight: 500;
-
-    color: var(--taupe);
+    font-size: 14px;
+    color: #777;
 }
 
 .value {
-
-    font-weight: 700;
-
-    color: var(--obsidian);
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
 }
 
 /* ===================================
@@ -188,148 +144,80 @@ body {
 =================================== */
 
 .action-buttons {
-
     display: flex;
-    gap: 1rem;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.btn {
-
+/* Primary button (Restart Quiz) */
+.btn.primary-btn {
+    background-color: #d4a317;
+    color: #000;
     border: none;
-
-    cursor: pointer;
-
-    font-family: inherit;
-
-    font-size: 1rem;
-
-    font-weight: 600;
-
-    padding: 0.9rem 1.8rem;
-
+    padding: 12px 14px;
     border-radius: 12px;
-
+    font-weight: 600;
+    cursor: pointer;
     transition: 0.3s ease;
 }
 
-.primary-btn {
-
-    background: var(--gold);
-
-    color: white;
+.btn.primary-btn:hover {
+    background-color: #b88f12;
+    transform: translateY(-2px);
 }
 
-.primary-btn:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 10px 20px rgba(212,164,24,.25);
+/* Share button override */
+#shareBtn {
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    color: #333;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-.secondary-btn {
-
-    background: transparent;
-
-    border: 2px solid var(--gold);
-
-    color: var(--gold);
-}
-
-.secondary-btn:hover {
-
-    background: var(--gold);
-
-    color: white;
+#shareBtn:hover {
+    background-color: #f2f2f2;
+    transform: translateY(-2px);
 }
 
 /* ===================================
-   DARK MODE
+   HEADER BUTTON
 =================================== */
 
-@media (prefers-color-scheme: dark) {
+#startQuizBtn {
+    background-color: #d4a317;
+    border: none;
+    color: #000;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
 
-    body {
-
-        background: var(--obsidian);
-
-        color: var(--ivory);
-    }
-
-    .results-card {
-
-        background: #17120b;
-    }
-
-    .performance-message {
-
-        color: #c6b79a;
-    }
-
-    .result-row {
-
-        background:
-            rgba(250,247,240,.06);
-    }
-
-    .value {
-
-        color: var(--ivory);
-    }
-
-    .secondary-btn {
-
-        color: var(--gold);
-
-        border-color: var(--gold);
-    }
+#startQuizBtn:hover {
+    background-color: #b88f12;
 }
 
 /* ===================================
-   MOBILE
+   RESPONSIVE
 =================================== */
 
-@media (max-width: 768px) {
-
+@media (max-width: 480px) {
     .results-card {
-
-        padding: 2rem;
-    }
-
-    .results-title {
-
-        font-size: 2.25rem;
+        padding: 20px 15px;
     }
 
     .score-circle {
-
-        width: 140px;
-        height: 140px;
+        width: 120px;
+        height: 120px;
     }
 
-    .score-circle span {
-
-        font-size: 2rem;
-    }
-
-    .result-row {
-
-        flex-direction: column;
-
-        gap: 0.5rem;
-    }
-
-    .action-buttons {
-
-        flex-direction: column;
-    }
-
-    .btn {
-
-        width: 100%;
+    .score-circle::after {
+        width: 90px;
+        height: 90px;
     }
 }
