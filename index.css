@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap');
+
+/* =========================
+COLOR SYSTEM
+========================= */
+
+:root{
+
+--primary:#D4A418;
+--secondary:#867555;
+
+--background:#FAF7F0;
+--surface:#FDFBF6;
+
+--text:#0F0C07;
+--muted:#867555;
+
+--success:#22C55E;
+--error:#EF4444;
+
+--shadow-sm:
+0 4px 12px rgba(15,12,7,.05);
+
+--shadow-md:
+0 10px 25px rgba(15,12,7,.08);
+
+--shadow-lg:
+0 20px 40px rgba(15,12,7,.12);
+
+--radius:18px;
+
+--transition:.3s ease;
+}
+
+/* =========================
+RESET
+========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:
+"DM Sans",
+sans-serif;
+
+background:
+var(--background);
+
+color:
+var(--text);
+
+min-height:100vh;
+
+  display:flex;
+flex-direction:column;
+}
+
+/* =========================
+NAVIGATION
+========================= */
+
+nav{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:1.2rem 8%;
+
+background:
+var(--background);
+
+border-bottom:
+1px solid rgba(134,117,85,.15);
+}
+
+nav h2{
+
+  font-family:
+"Playfair Display",
+serif;
+
+font-size:2rem;
+
+color:
+var(--primary);
+}
+
+nav div{
+
+display:flex;
+gap:2rem;
+}
+
+nav a{
+
+text-decoration:none;
+
+color:
+var(--text);
+
+font-weight:500;
+
+transition:
+var(--transition);
+}
+
+nav a:hover{
+
+color:
+var(--primary);
+}
+
+/* =========================
+MAIN
+========================= */
+
+main{
+
+flex:1;
+
+max-width:1200px;
+
+width:100%;
+
+margin:auto;
+
+padding:5rem 8%;
+
+text-align:center;
+}
+
+/* =========================
+HERO TITLE
+========================= */
+
+main h1{
+  font-family:
+"Playfair Display",
+serif;
+
+font-size:
+clamp(3rem,7vw,5rem);
+
+line-height:1.1;
+
+margin-bottom:1rem;
+
+color:
+var(--text);
+}
+
+/* =========================
+HERO TEXT
+========================= */
+
+main > p{
+
+max-width:650px;
+
+margin:
+0 auto 4rem auto;
+
+font-size:1.1rem;
+
+  line-height:1.8;
+
+color:
+var(--muted);
+}
+
+/* =========================
+CATEGORY GRID
+========================= */
+
+section{
+
+display:grid;
+
+grid-template-columns:
+repeat(
+auto-fit,
+minmax(280px,1fr)
+);
+
+gap:2rem;
+}
+
+/* =========================
+CATEGORY CARD
+========================= */
+
+.card{
+
+text-decoration:none;
+
+color:inherit;
+
+  background:
+var(--surface);
+
+border:
+1px solid rgba(134,117,85,.15);
+
+border-radius:
+var(--radius);
+
+padding:2rem;
+
+box-shadow:
+var(--shadow-sm);
+
+transition:
+var(--transition);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+  position:relative;
+}
+
+.card:hover{
+
+transform:
+translateY(-6px);
+
+border-color:
+var(--primary);
+
+box-shadow:
+0 15px 30px rgba(212,164,24,.12);
+}
+
+/* Gold top line */
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:4px;
+
+background:
+var(--primary);
+
+border-radius:
+18px 18px 0 0;
+
+transform:
+scaleX(0);
+
+  transition:
+var(--transition);
+}
+
+.card:hover::before{
+
+transform:
+scaleX(1);
+}
+
+/* =========================
+ICON
+========================= */
+
+.icon{
+
+width:80px;
+height:80px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+  border-radius:50%;
+
+background:
+rgba(212,164,24,.10);
+
+color:
+var(--primary);
+
+font-size:2.5rem;
+
+margin-bottom:1.5rem;
+}
+
+/* =========================
+CARD TITLE
+========================= */
+
+.card h3{
+
+font-family:
+"Playfair Display",
+serif;
+
+font-size:1.8rem;
+
+margin-bottom:.8rem;
+
+color:
+var(--text);
+}
+
+/* =========================
+CARD TEXT
+========================= */
+
+.card p{
+
+color:
+var(--muted);
+
+line-height:1.7;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+
+margin-top:4rem;
+
+text-align:center;
+
+padding:2rem;
+
+background:
+var(--surface);
+
+border-top:
+1px solid rgba(134,117,85,.15);
+}
+
+footer p{
+
+color:
+var(--muted);
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:360px){
+
+nav{
+
+flex-direction:column;
+
+gap:1rem;
+
+}
+
+nav div{
+
+gap:1.2rem;
+
+}
+
+main{
+
+padding:3rem 6%;
+
+}
+
+  .card{
+
+padding:1.8rem;
+
+}
+
+.icon{
+
+width:70px;
+height:70px;
+
+font-size:2rem;
+
+}
+
+.card h3{
+
+font-size:1.5rem;
+
+}
+}
