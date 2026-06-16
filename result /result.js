@@ -10,11 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!storedResults) {
         window.location.href = "../index.html";
         return;
-    const circle = document.querySelector(".score-circle");
-if (circle) {
-    circle.style.setProperty("--progress", results.percentage);
-}
     }
+
+    // Parse results AFTER checking
+    const results = JSON.parse(storedResults);
+
+    // Update score circle progress
+    const circle = document.querySelector(".score-circle");
+    if (circle) {
+        circle.style.setProperty("--progress", results.percentage);
+    }
+
+});
 
     const results = JSON.parse(storedResults);
 
