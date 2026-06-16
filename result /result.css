@@ -23,22 +23,36 @@ header {
     max-width: 420px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between; /* FIX */
+    justify-content: space-between; 
     align-items: center;
 }
 
-/* Brain Sync BRAND (FIX BOLD + GOLD) */
+/* Brain Sync BRAND */
 .playfair-heading {
-    font-weight: 800; /* FIX BOLDER */
-    color: #d4a317 !important; /* FORCE GOLD */
+    font-weight: 700; 
+    color: #d4a317 !important; 
     font-size: 26px;
 }
 
 /* Results link */
-header a {
-    font-weight: 600;
+.result-link {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: #000000;
+    text-decoration: none;
+
+    /* gold underline */
+    border-bottom: 2px solid #d4a317;
+
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+/* optional hover effect */
+.result-link:hover {
     color: #000;
-    border-bottom: 2px solid #bfa029;
+    border-bottom: 2px solid #b88f12;
 }
 
 /* ===================================
@@ -168,13 +182,19 @@ header a {
     cursor: pointer;
 }
 
-/* Start Quiz (RIGHT SIDE FIX) */
 #startQuizBtn {
-    margin-left: auto; /* PUSH RIGHT */
-    background: #d4a317;
-    color: black;
+    background-color: #d4a317;
     border: none;
+    color: #000;
     padding: 8px 14px;
     border-radius: 20px;
-    font-weight: 700;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
+
+#startQuizBtn:hover {
+    background-color: #b88f12;
+}
+
+/*
