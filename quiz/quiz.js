@@ -5,6 +5,8 @@
 // Get category from URL
 const params = new URLSearchParams(window.location.search);
 const category = params.get("category");
+const params = new URLSearchParams(window.location.search);
+const category = params.get("category");
 
 // ===================================
 // API URLS
@@ -32,6 +34,7 @@ let score = 0;
 let timeLeft = 600; // 10 minutes
 let timerInterval = null;
 
+const incorrectQuestions = [];
 // ===================================
 // INITIALIZE APP
 // ===================================
@@ -222,9 +225,22 @@ function updateNavigationButtons() {
 
 function calculateScore() {
   score = 0;
+
+  incorrectQuestions.length = 0;
+
   questions.forEach((question, index) => {
-    if (selectedAnswers[index] === question.correct_answer) {
+    const userAnswer = selectedAnswers[index];
+
+    if (userAnswer === question.correct_answer) {
       score++;
+    } else {
+      incorrectQuestions.push({
+        question: decodeHTML(question.question),
+        userAnswer: userAnswer
+          ? decodeHTML(userAnswer)
+          : "No answer selected",
+        correctAnswer: decodeHTML(question.correct_answer),
+      });
     }
   });
 }
@@ -235,16 +251,30 @@ function calculateScore() {
 
 function finishQuiz() {
   clearInterval(timerInterval);
+
   calculateScore();
+
   const results = {
     category,
     score,
     total: questions.length,
-    percentage: Math.round((score / questions.length) * 100),
-    answered: selectedAnswers.filter((answer) => answer).length,
+    percentage: Math.round(
+      (score / questions.length) * 100
+    ),
+    answered: selectedAnswers.filter(
+      answer => answer
+    ).length,
+
+    incorrectQuestions,
   };
-  localStorage.setItem("quizResults", JSON.stringify(results));
-  window.location.href = "../result/index.html";
+
+  localStorage.setItem(
+    "quizResults",
+    JSON.stringify(results)
+  );
+
+  window.location.href =
+    "../result/index.html";
 }
 
 // ===================================
