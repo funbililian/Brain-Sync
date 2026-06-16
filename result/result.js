@@ -1,17 +1,58 @@
-// ===================================
-// RESULTS PAGE (FIXED VERSION)
-// ===================================
-
 document.addEventListener("DOMContentLoaded", () => {
-  const storedResults = localStorage.getItem("quizResults");
 
-  // Redirect if no results exist
-  if (!storedResults) {
-    window.location.href = "../index.html";
-    return;
-  }
+    const storedResults = localStorage.getItem("quizResults");
 
-  const results = JSON.parse(storedResults);
+    // Redirect if no results exist
+    if (!storedResults) {
+        window.location.href = "../index.html";
+        return;
+    }
+
+    const results = JSON.parse(storedResults);
+
+    // ===================================
+    // DISPLAY INCORRECT QUESTIONS
+    // ===================================
+
+    const incorrectList =
+        document.getElementById("incorrectQuestionsList");
+
+    if (incorrectList) {
+
+        if (
+            !results.incorrectQuestions ||
+            results.incorrectQuestions.length === 0
+        ) {
+
+            incorrectList.innerHTML =
+                "<p>Perfect score! No mistakes 🎉</p>";
+
+        } else {
+
+            incorrectList.innerHTML =
+                results.incorrectQuestions
+                    .map(
+                        (item, index) => `
+                        <div class="incorrect-card">
+                            <h4>
+                                ${index + 1}. ${item.question}
+                            </h4>
+
+                            <p>
+                                <strong>Your Answer:</strong>
+                                ${item.userAnswer}
+                            </p>
+
+                            <p>
+                                <strong>Correct Answer:</strong>
+                                ${item.correctAnswer}
+                            </p>
+                        </div>
+                    `
+                    )
+                    .join("");
+        }
+    }
 
   // ===================================
   // ELEMENTS
