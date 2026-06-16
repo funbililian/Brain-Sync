@@ -11,14 +11,14 @@ const category = params.get("category");
 // ===================================
 
 const API_URLS = {
-    history:
-        "https://opentdb.com/api.php?amount=15&category=23&difficulty=medium&type=multiple",
+  history:
+    "https://opentdb.com/api.php?amount=15&category=23&difficulty=medium&type=multiple",
 
-    sports:
-        "https://opentdb.com/api.php?amount=15&category=21&difficulty=medium&type=multiple",
+  sports:
+    "https://opentdb.com/api.php?amount=15&category=21&difficulty=medium&type=multiple",
 
-    general:
-        "https://opentdb.com/api.php?amount=15&category=9&difficulty=medium&type=multiple"
+  general:
+    "https://opentdb.com/api.php?amount=15&category=9&difficulty=medium&type=multiple",
 };
 
 // ===================================
@@ -29,7 +29,6 @@ let questions = [];
 let currentQuestion = 0;
 let selectedAnswers = [];
 let score = 0;
-
 let timeLeft = 600; // 10 minutes
 let timerInterval = null;
 
@@ -38,23 +37,17 @@ let timerInterval = null;
 // ===================================
 
 window.addEventListener("DOMContentLoaded", () => {
+  if (!category || !API_URLS[category]) {
+    const questionElement = document.getElementById("question");
 
-    if (!category || !API_URLS[category]) {
-
-        const questionElement =
-            document.getElementById("question");
-
-        if (questionElement) {
-            questionElement.textContent =
-                "Invalid category selected.";
-        }
-
-        return;
+    if (questionElement) {
+      questionElement.textContent = "Invalid category selected.";
     }
+    return;
+  }
 
-    attachEventListeners();
-
-    loadQuiz();
+  attachEventListeners();
+  loadQuiz();
 });
 
 // ===================================
@@ -62,50 +55,32 @@ window.addEventListener("DOMContentLoaded", () => {
 // ===================================
 
 async function loadQuiz() {
+  try {
+    const response = await fetch(API_URLS[category]);
 
-    try {
-
-        const response =
-            await fetch(API_URLS[category]);
-
-        if (!response.ok) {
-            throw new Error(
-                `HTTP Error: ${response.status}`
-            );
-        }
-
-        const data = await response.json();
-
-        if (
-            !data.results ||
-            data.results.length === 0
-        ) {
-            throw new Error(
-                "No questions returned."
-            );
-        }
-
-        questions = data.results;
-
-        displayQuestion();
-
-        startTimer();
-
-    } catch (error) {
-
-        console.error(
-            "Quiz Load Error:",
-            error
-        );
-
-        const questionElement =
-            document.getElementById("question");
-
-        if (questionElement) {
-            questionElement.textContent =
-                "Failed to load questions. Please try again.";
-        }
+    if (!response.ok) {
+      throw new Error(`HTTP Error: ${response.status}`);
     }
+
+    const data = await response.json();
+
+    if (!data.results || data.results.length === 0) {
+      throw new Error("No questions returned.");
+    }
+
+    questions = data.results;
+    displayQuestion();
+    startTimer();
+  } catch (error) {
+    console.error("Quiz Load Error:", error);
+
+    const questionElement = document.getElementById("question");
+
+    if (questionElement) {
+      questionElement.textContent =
+        "Failed to load questions. Please try again.";
+    }
+  }
 }
 
 // ===================================
@@ -113,44 +88,40 @@ async function loadQuiz() {
 // ===================================
 
 function startTimer() {
+  updateTimerDisplay();
 
+  timerInterval = setInterval(() => {
+    timeLeft--;
     updateTimerDisplay();
 
-    timerInterval = setInterval(() => {
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      const modal = document.getElementById("timeoutModal");
+      const modalBtn = document.getElementById("modalSubmitBtn");
 
-        timeLeft--;
+      if (modal) {
+        modal.showModal();
 
-        updateTimerDisplay();
-
-        if (timeLeft <= 0) {
-
-            clearInterval(timerInterval);
-
-            alert(
-                "Time is up! Submitting quiz."
-            );
-
-            finishQuiz();
+        if (modalBtn) {
+          modalBtn.onclick = finishQuiz;
+        } else {
+          setTimeout(finishQuiz, 3000);
         }
-
-    }, 1000);
+      } else {
+        finishQuiz();
+      }
+    }
+  }, 1000);
 }
 
 function updateTimerDisplay() {
+  const timerElement = document.getElementById("timer");
 
-    const timerElement =
-        document.getElementById("timer");
+  if (!timerElement) return;
 
-    if (!timerElement) return;
-
-    const minutes =
-        Math.floor(timeLeft / 60);
-
-    const seconds =
-        timeLeft % 60;
-
-    timerElement.textContent =
-        `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  timerElement.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
 // ===================================
@@ -158,105 +129,44 @@ function updateTimerDisplay() {
 // ===================================
 
 function displayQuestion() {
+  if (!questions.length) return;
 
-    if (!questions.length) return;
+  const q = questions[currentQuestion];
 
-    const q =
-        questions[currentQuestion];
+  // Question Number
+  document.getElementById("questionNumber").textContent =
+    `Question ${currentQuestion + 1} of ${questions.length}`;
 
-    // Question Number
-    document.getElementById(
-        "questionNumber"
-    ).textContent =
-        `Question ${currentQuestion + 1} of ${questions.length}`;
+  // Progress
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  document.getElementById("percentage").textContent =
+    `${Math.round(progress)}%`;
+  document.getElementById("progress").style.width = `${progress}%`;
 
-    // Progress
-    const progress =
-        ((currentQuestion + 1) /
-            questions.length) * 100;
+  // Question Text
+  document.getElementById("question").innerHTML = decodeHTML(q.question);
 
-    document.getElementById(
-        "percentage"
-    ).textContent =
-        `${Math.round(progress)}%`;
-
-    document.getElementById(
-        "progress"
-    ).style.width =
-        `${progress}%`;
-
-    // Question Text
-    document.getElementById(
-        "question"
-    ).innerHTML =
-        decodeHTML(q.question);
-
-    // Answers
-    const answersContainer =
-        document.getElementById(
-            "answers"
-        );
-
-    answersContainer.innerHTML = "";
-
-    const answers = shuffle([
-        ...q.incorrect_answers,
-        q.correct_answer
-    ]);
-
-    answers.forEach(answer => {
-
-        const button =
-            document.createElement(
-                "button"
-            );
-
-        button.className =
-            "answer-btn";
-
-        button.innerHTML =
-            decodeHTML(answer);
-
-        if (
-            selectedAnswers[
-                currentQuestion
-            ] === answer
-        ) {
-            button.classList.add(
-                "selected"
-            );
-        }
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                document
-                    .querySelectorAll(
-                        ".answer-btn"
-                    )
-                    .forEach(btn =>
-                        btn.classList.remove(
-                            "selected"
-                        )
-                    );
-
-                button.classList.add(
-                    "selected"
-                );
-
-                selectedAnswers[
-                    currentQuestion
-                ] = answer;
-            }
-        );
-
-        answersContainer.appendChild(
-            button
-        );
+  // Answers
+  const answersContainer = document.getElementById("answers");
+  answersContainer.innerHTML = "";
+  const answers = shuffle([...q.incorrect_answers, q.correct_answer]);
+  answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.className = "answer-btn";
+    button.innerHTML = decodeHTML(answer);
+    if (selectedAnswers[currentQuestion] === answer) {
+      button.classList.add("selected");
+    }
+    button.addEventListener("click", () => {
+      document
+        .querySelectorAll(".answer-btn")
+        .forEach((btn) => btn.classList.remove("selected"));
+      button.classList.add("selected");
+      selectedAnswers[currentQuestion] = answer;
     });
-
-    updateNavigationButtons();
+    answersContainer.appendChild(button);
+  });
+  updateNavigationButtons();
 }
 
 // ===================================
@@ -264,57 +174,28 @@ function displayQuestion() {
 // ===================================
 
 function attachEventListeners() {
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
 
-    const nextBtn =
-        document.getElementById(
-            "nextBtn"
-        );
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        displayQuestion();
+      } else {
+        finishQuiz();
+      }
+    });
+  }
 
-    const prevBtn =
-        document.getElementById(
-            "prevBtn"
-        );
-
-    if (nextBtn) {
-
-        nextBtn.addEventListener(
-            "click",
-            () => {
-
-                if (
-                    currentQuestion <
-                    questions.length - 1
-                ) {
-
-                    currentQuestion++;
-
-                    displayQuestion();
-
-                } else {
-
-                    finishQuiz();
-                }
-            }
-        );
-    }
-
-    if (prevBtn) {
-
-        prevBtn.addEventListener(
-            "click",
-            () => {
-
-                if (
-                    currentQuestion > 0
-                ) {
-
-                    currentQuestion--;
-
-                    displayQuestion();
-                }
-            }
-        );
-    }
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        displayQuestion();
+      }
+    });
+  }
 }
 
 // ===================================
@@ -322,30 +203,17 @@ function attachEventListeners() {
 // ===================================
 
 function updateNavigationButtons() {
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
 
-    const prevBtn =
-        document.getElementById(
-            "prevBtn"
-        );
+  if (prevBtn) {
+    prevBtn.disabled = currentQuestion === 0;
+  }
 
-    const nextBtn =
-        document.getElementById(
-            "nextBtn"
-        );
-
-    if (prevBtn) {
-        prevBtn.disabled =
-            currentQuestion === 0;
-    }
-
-    if (nextBtn) {
-
-        nextBtn.textContent =
-            currentQuestion ===
-            questions.length - 1
-                ? "Finish Quiz"
-                : "Next";
-    }
+  if (nextBtn) {
+    nextBtn.textContent =
+      currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next";
+  }
 }
 
 // ===================================
@@ -353,22 +221,12 @@ function updateNavigationButtons() {
 // ===================================
 
 function calculateScore() {
-
-    score = 0;
-
-    questions.forEach(
-        (question, index) => {
-
-            if (
-                selectedAnswers[
-                    index
-                ] ===
-                question.correct_answer
-            ) {
-                score++;
-            }
-        }
-    );
+  score = 0;
+  questions.forEach((question, index) => {
+    if (selectedAnswers[index] === question.correct_answer) {
+      score++;
+    }
+  });
 }
 
 // ===================================
@@ -376,41 +234,17 @@ function calculateScore() {
 // ===================================
 
 function finishQuiz() {
-
-    clearInterval(
-        timerInterval
-    );
-
-    calculateScore();
-
-    const results = {
-
-        category,
-
-        score,
-
-        total:
-            questions.length,
-
-        percentage:
-            Math.round(
-                (score /
-                    questions.length) *
-                    100
-            ),
-
-        answered:
-            selectedAnswers.filter(
-                answer => answer
-            ).length
-    };
-
-    localStorage.setItem(
-        "quizResults",
-        JSON.stringify(results)
-    );
-
-    window.location.href = "../result /index.html";
+  clearInterval(timerInterval);
+  calculateScore();
+  const results = {
+    category,
+    score,
+    total: questions.length,
+    percentage: Math.round((score / questions.length) * 100),
+    answered: selectedAnswers.filter((answer) => answer).length,
+  };
+  localStorage.setItem("quizResults", JSON.stringify(results));
+  window.location.href = "../result/index.html";
 }
 
 // ===================================
@@ -418,43 +252,16 @@ function finishQuiz() {
 // ===================================
 
 function shuffle(array) {
-
-    const shuffled =
-        [...array];
-
-    for (
-        let i =
-            shuffled.length - 1;
-        i > 0;
-        i--
-    ) {
-
-        const j =
-            Math.floor(
-                Math.random() *
-                    (i + 1)
-            );
-
-        [
-            shuffled[i],
-            shuffled[j]
-        ] = [
-            shuffled[j],
-            shuffled[i]
-        ];
-    }
-
-    return shuffled;
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
 }
 
 function decodeHTML(html) {
-
-    const txt =
-        document.createElement(
-            "textarea"
-        );
-
-    txt.innerHTML = html;
-
-    return txt.value;
+  const txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
 }

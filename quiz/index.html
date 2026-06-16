@@ -1,46 +1,83 @@
-<!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BrainSync Quiz</title>  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">  <link rel="stylesheet" href="quiz.css">
-</head><body><div class="container">  <header><div class="header-text">
-  <h1 id="quizTitle">BrainSync Quiz</h1>
-  <p>Answer all questions before time runs out.</p>
-</div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrainSync Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="quiz.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-text">
+          <h1 id="quizTitle">BrainSync Quiz</h1>
+          <p>Answer all questions before time runs out.</p>
+        </div>
 
-<div class="timer-card">
-  <span>TIME LEFT</span>
-  <h2 id="timer">10:00</h2>
-</div>
+        <div class="timer-card">
+          <span>TIME LEFT</span>
+          <h2 id="timer">10:00</h2>
+        </div>
+      </header>
+      <div class="progress-info">
+        <span id="questionNumber"> Question 1 of 15 </span
+        ><span id="percentage"> 0% </span>
+      </div>
+      <div class="progress-bar">
+        <div id="progress"></div>
+      </div>
+      <section class="quiz-card">
+        <div class="question-tag">Question</div>
 
-  </header>  <div class="progress-info">
-    <span id="questionNumber">
-      Question 1 of 15
-    </span><span id="percentage">
-  0%
-    </span>
-    
-</div>  <div class="progress-bar">
-    <div id="progress"></div>
-  </div>  <section class="quiz-card"><div class="question-tag">
-  Question
-</div>
+        <h2 id="question">Loading questions...</h2>
 
-<h2 id="question">
-  Loading questions...
-</h2>
+        <div id="answers"></div>
+      </section>
+      <div class="buttons">
+        <button id="prevBtn">Previous</button>
 
-<div id="answers">
-</div>
+        <button id="nextBtn">Next</button>
+      </div>
+    </div>
+    <dialog id="timeoutModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="64"
+            height="64"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#d4a418"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 22h14" />
+            <path d="M5 2h14" />
+            <path
+              d="M17 2v4a5 5 0 0 1-1.47 3.53L12 13l-3.53-3.47A5 5 0 0 1 7 6V2"
+            />
+            <path
+              d="M7 22v-4a5 5 0 0 1 1.47-3.53L12 11l3.53 3.47A5 5 0 0 1 17 18v4"
+            />
+          </svg>
+        </div>
+        <h2>Time is Up!</h2>
+        <p>
+          Your time limit has expired. Don't worry, we are saving your progress
+          and submitting your quiz answers now.
+        </p>
+        <button id="modalSubmitBtn" class="modal-btn">View Results</button>
+      </div>
+    </dialog>
 
-  </section>  <div class="buttons"><button id="prevBtn">
-  Previous
-</button>
-
-<button id="nextBtn">
-  Next
-</button>
-
-  </div></div><script src="quiz.js"></script></body>
+    <script src="quiz.js"></script>
+  </body>
 </html>
