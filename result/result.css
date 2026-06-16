@@ -142,6 +142,36 @@ header {
   border-bottom: 1px solid #eee;
 }
 
+.incorrect-section {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.incorrect-section h2 {
+    color: #d4a317;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.incorrect-card {
+    background: #fff;
+    border-left: 4px solid #d4a317;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.incorrect-card h4 {
+    margin-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.incorrect-card p {
+    margin-bottom: 5px;
+    color: #555;
+}
+
 /* ===================================
    BUTTONS
 =================================== */
