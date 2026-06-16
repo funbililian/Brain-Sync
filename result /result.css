@@ -31,9 +31,9 @@ header {
 /* BrainSync LOGO */
 header .logo {
     font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    font-weight: 900;
-    color: #d4a317;
+    font-size: 2.2rem;
+    font-weight: 900 !important;
+    color: #d4a317 !important;
 }
 
 /* NAV LINKS */
