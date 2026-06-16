@@ -410,7 +410,7 @@ function finishQuiz() {
         JSON.stringify(results)
     );
 
-    window.location.href = "../result/index.html";
+    window.location.href = "../result /index.html";
 }
 
 // ===================================
