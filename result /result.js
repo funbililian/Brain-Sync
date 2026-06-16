@@ -1,5 +1,5 @@
 // ===================================
-// RESULTS PAGE
+// RESULTS PAGE (FIXED VERSION)
 // ===================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,17 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "../index.html";
         return;
     }
-
-    // Parse results AFTER checking
-    const results = JSON.parse(storedResults);
-
-    // Update score circle progress
-    const circle = document.querySelector(".score-circle");
-    if (circle) {
-        circle.style.setProperty("--progress", results.percentage);
-    }
-
-});
 
     const results = JSON.parse(storedResults);
 
@@ -75,7 +64,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===================================
-    // SHARE SCORE FUNCTIONALITY
+    // SCORE CIRCLE PROGRESS
+    // ===================================
+
+    const circle = document.querySelector(".score-circle");
+    if (circle) {
+        circle.style.setProperty("--progress", results.percentage);
+    }
+
+    // ===================================
+    // SHARE BUTTON
     // ===================================
 
     if (shareBtn) {
@@ -90,36 +88,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 url: window.location.origin
             };
 
-            // Mobile / modern browsers
-            if (navigator.share) {
-                try {
+            try {
+                if (navigator.share) {
                     await navigator.share(shareData);
-                } catch (err) {
-                    console.log("Share cancelled or failed:", err);
-                }
-            } 
-            // Fallback (copy to clipboard)
-            else {
-                try {
+                } else {
                     await navigator.clipboard.writeText(
                         `${shareText} - ${window.location.href}`
                     );
                     alert("Score copied to clipboard!");
-                } catch (err) {
-                    alert("Unable to share score");
                 }
+            } catch (err) {
+                console.log("Share failed:", err);
             }
+        });
+    }
+
+    // ===================================
+    // RETAKE BUTTON FIX
+    // ===================================
+
+    const startBtn = document.getElementById("startQuizBtn");
+
+    if (startBtn) {
+        startBtn.addEventListener("click", () => {
+            window.location.href = "../index.html";
         });
     }
 });
 
 // ===================================
-// RETAKE QUIZ
+// RETAKE QUIZ (GLOBAL FUNCTION)
 // ===================================
 
 function retakeQuiz() {
-
     localStorage.removeItem("quizResults");
-
     window.location.href = "../quiz/index.html";
 }
