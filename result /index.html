@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Results</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="result.css">
-    <title>Brain Sync</title>
-      <link rel="stylesheet" href="quiz.css" />
-      <link
+    <title>Brain Sync - Quiz Results</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="result.css" />
+    <link rel="stylesheet" href="quiz.css" />
+
+    <!-- Google Font -->
+    <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
-      />
-    </head>
+    />
 
-    <body
-      class="bg-[#f7f4eb] min-h-screen flex flex-col items-center p-4 selecAtion:bg-amber-200"
-    >
-      <header
-        class="w-full max-w-md flex items-center justify-between py-4 px-2"
-      >
+    <!-- Font Awesome (for share icon) -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+</head>
+
+<body class="bg-[#f7f4eb] min-h-screen flex flex-col items-center p-4">
+
+    <!-- Header -->
+    <header class="w-full max-w-md flex items-center justify-between py-4 px-2">
         <div class="flex items-center space-x-6">
-          <span class="playfair-heading text-2xl font-bold text-[#d4a317]">
-            Brain Sync.
-          </span>
-              <a
-            href="#"
-            class="playfair-heading text-black border-b-2 border-[#bfa029]"
-          >
-            Results
-          </a>
+            <span class="playfair-heading text-2xl font-bold text-[#d4a317]">
+                Brain Sync.
+            </span>
+
+            <a href="#" class="playfair-heading text-black border-b-2 border-[#bfa029]">
+                Results
+            </a>
         </div>
-        <div class="flex items-center space-x-3">
-          <button
+
+        <button
             id="startQuizBtn"
             class="playfair-heading bg-[#d4a317] text-black font-semibold text-xs px-4 py-2 rounded-full"
-          >
+        >
             Start Quiz
-          </button>
-        </div>
-</head>
-<body>
+        </button>
+    </header>
 
+    <!-- Main Content -->
     <main class="results-page">
 
         <section class="results-card">
 
-            <h1 class="results-title">
-                Quiz Completed 🎉
-            </h1>
+            <h1 class="results-title">Quiz Completed 🎉</h1>
 
-            <p id="message" class="performance-message">
-                Loading...
-            </p>
+            <p id="message" class="performance-message">Loading...</p>
 
             <div class="score-circle">
                 <span id="percentage">0%</span>
@@ -62,9 +62,7 @@
 
                 <div class="result-row">
                     <span class="label">Category</span>
-                    <span id="category" class="value">
-                        -
-                    </span>
+                    <span id="category" class="value">-</span>
                 </div>
 
                 <div class="result-row">
@@ -76,31 +74,25 @@
                 </div>
 
                 <div class="result-row">
-                    <span class="label">
-                        Questions Answered
-                    </span>
-                    <span id="answered" class="value">
-                        0
-                    </span>
+                    <span class="label">Questions Answered</span>
+                    <span id="answered" class="value">0</span>
                 </div>
 
             </div>
 
             <div class="action-buttons">
 
-                <button
-                    class="btn primary-btn"
-                    onclick="retakeQuiz()"
-                >
+                <button class="btn primary-btn" onclick="retakeQuiz()">
                     Restart Quiz
                 </button>
-        <button
-          id="shareBtn"
-          class="bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-3 px-4 rounded-xl shadow-sm flex items-center justify-center space-x-2 transition-all hover:translate-y-[-1px]"
-        >
-          <i class="fa-solid fa-share-nodes text-sm text-rose-400"></i>
-          <span class="text-sm">Share Score</span>
-        </button>
+
+                <button
+                    id="shareBtn"
+                    class="bg-white hover:bg-gray-50 border border-gray-200 text-gray-700 font-semibold py-3 px-4 rounded-xl shadow-sm flex items-center justify-center space-x-2 transition-all hover:translate-y-[-1px]"
+                >
+                    <i class="fa-solid fa-share-nodes text-sm text-rose-400"></i>
+                    <span class="text-sm">Share Score</span>
+                </button>
 
             </div>
 
