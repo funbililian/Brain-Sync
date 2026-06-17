@@ -32,7 +32,7 @@ The Quiz Application is a web-based platform that allows users to answer multipl
 
 - Welcome message
 - Application description
-- Start Quiz button
+- Categories button
 
 #### 2. Quiz Interface
 
