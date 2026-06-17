@@ -1,10 +1,38 @@
 // Smooth scroll — Quiz nav link
-document.querySelector('a[href="#categories"]')
+document
+  .querySelector('a[href="#categories"]')
   ?.addEventListener("click", (e) => {
     e.preventDefault();
-    document.getElementById("categories")
+    document
+      .getElementById("categories")
       .scrollIntoView({ behavior: "smooth" });
   });
+
+// Hamburger on mobile view
+const menuToggle = document.getElementById("menuToggle");
+const closeMenu = document.getElementById("closeMenu");
+const navLinks = document.getElementById("navLinks");
+const navOverlay = document.getElementById("navOverlay");
+
+function openMenu() {
+  navLinks.classList.add("open");
+  navOverlay.classList.add("active");
+}
+
+function closeNavigation() {
+  navLinks.classList.remove("open");
+  navOverlay.classList.remove("active");
+}
+
+menuToggle?.addEventListener("click", openMenu);
+closeMenu?.addEventListener("click", closeNavigation);
+navOverlay?.addEventListener("click", closeNavigation);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeNavigation();
+  }
+});
 
 // Highlight nav link when categories section is in view
 const section = document.getElementById("categories");
@@ -12,11 +40,9 @@ const quizLink = document.querySelector('a[href="#categories"]');
 
 const observer = new IntersectionObserver(
   ([entry]) => {
-    quizLink.style.color = entry.isIntersecting
-      ? "var(--primary)"
-      : "";
+    quizLink.style.color = entry.isIntersecting ? "var(--primary)" : "";
   },
-  { threshold: 0.2 }
+  { threshold: 0.2 },
 );
 observer.observe(section);
 

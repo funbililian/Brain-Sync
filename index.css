@@ -5,24 +5,24 @@ COLOR SYSTEM
 ========================= */
 
 :root {
---primary: #d4a418;
---secondary: #867555;
+  --primary: #d4a418;
+  --secondary: #867555;
 
---background: #faf7f0;
---surface: #fdfbf6;
+  --background: #faf7f0;
+  --surface: #fdfbf6;
 
---text: #0f0c07;
---muted: #867555;
+  --text: #0f0c07;
+  --muted: #867555;
 
---success: #22c55e;
---error: #ef4444;
+  --success: #22c55e;
+  --error: #ef4444;
 
---shadow-sm: 0 4px 12px rgba(15, 12, 7, 0.05);
---shadow-md: 0 10px 25px rgba(15, 12, 7, 0.08);
---shadow-lg: 0 20px 40px rgba(15, 12, 7, 0.12);
+  --shadow-sm: 0 4px 12px rgba(15, 12, 7, 0.05);
+  --shadow-md: 0 10px 25px rgba(15, 12, 7, 0.08);
+  --shadow-lg: 0 20px 40px rgba(15, 12, 7, 0.12);
 
---radius: 18px;
---transition: 0.3s ease;
+  --radius: 18px;
+  --transition: 0.3s ease;
 }
 
 /* =========================
@@ -33,19 +33,19 @@ RESET
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  }
+}
 
 html {
-scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-font-family: "DM Sans", sans-serif;
-background: var(--background);
-color: var(--text);
-min-height: 100vh;
-display: flex;
-flex-direction: column;
+  font-family: "DM Sans", sans-serif;
+  background: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================
@@ -53,22 +53,22 @@ NAVBAR
 ========================= */
 
 .navbar {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 
-padding: 1rem 8%;
+  padding: 1rem 8%;
 
-background: var(--background);
-border-bottom: 1px solid rgba(134, 117, 85, 0.15);
-box-shadow: var(--shadow-sm);
+  background: var(--background);
+  border-bottom: 1px solid rgba(134, 117, 85, 0.15);
+  box-shadow: var(--shadow-sm);
 }
 
 /* =========================
@@ -76,36 +76,36 @@ LOGO
 ========================= */
 
 .logo-container {
-display: flex;
-align-items: center;
-gap: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .logo-badge {
-width: 48px;
-height: 48px;
+  width: 48px;
+  height: 48px;
 
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-background: var(--primary);
-color: #000;
+  background: var(--primary);
+  color: #000;
 
-border-radius: 12px;
+  border-radius: 12px;
 
-font-size: 1.2rem;
-font-weight: 700;
+  font-size: 1.2rem;
+  font-weight: 700;
 
-box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 .logo-container h2 {
-font-family: "Playfair Display", serif;
-font-size: 3rem;
-font-weight: 900;
-color: var(--primary);
-line-height: 1;
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--primary);
+  line-height: 1;
 }
 
 /* =========================
@@ -113,20 +113,39 @@ NAV LINKS
 ========================= */
 
 .nav-links {
-display: flex;
-gap: 2rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .nav-links a {
-text-decoration: none;
-color: var(--text);
-font-weight: 500;
-transition: var(--transition);
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  transition: var(--transition);
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-color: var(--primary);
+  color: var(--primary);
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: 0.3s ease;
+
+  z-index: 1050;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* =========================
@@ -134,18 +153,15 @@ MAIN
 ========================= */
 
 main {
-flex: 1;
-width: 100%;
-max-width: 1200px;
-
-margin: 0 auto;
-
-padding-top: 12rem;
-padding-right: 8%;
-padding-bottom: 5rem;
-padding-left: 8%;
-
-text-align: center;
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 12rem;
+  padding-right: 8%;
+  padding-bottom: 5rem;
+  padding-left: 8%;
+  text-align: center;
 }
 
 /* =========================
@@ -153,14 +169,12 @@ HERO TITLE
 ========================= */
 
 main h1 {
-font-family: "Playfair Display", serif;
-font-size: clamp(3rem, 7vw, 5rem);
-font-weight: 800;
-line-height: 1.1;
-
-margin-bottom: 1rem;
-
-color: var(--text);
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: var(--text);
 }
 
 /* =========================
@@ -168,14 +182,11 @@ HERO TEXT
 ========================= */
 
 main > p {
-max-width: 700px;
-
-margin: 0 auto 4rem auto;
-
-font-size: 1.15rem;
-line-height: 1.9;
-
-color: var(--muted);
+  max-width: 700px;
+  margin: 0 auto 4rem auto;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--muted);
 }
 
 /* =========================
@@ -183,9 +194,9 @@ CATEGORY GRID
 ========================= */
 
 section {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 /* =========================
@@ -193,31 +204,31 @@ CATEGORY CARD
 ========================= */
 
 .card {
-background: var(--surface);
+  background: var(--surface);
 
-border: 1px solid rgba(134, 117, 85, 0.15);
-border-top: 5px solid transparent;
+  border: 1px solid rgba(134, 117, 85, 0.15);
+  border-top: 5px solid transparent;
 
-border-radius: var(--radius);
+  border-radius: var(--radius);
 
-padding: 2rem;
+  padding: 2rem;
 
-text-decoration: none;
-color: inherit;
+  text-decoration: none;
+  color: inherit;
 
-box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-sm);
 
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-transition: var(--transition);
+  transition: var(--transition);
 }
 
 .card:hover {
-transform: translateY(-8px);
-border-top-color: var(--primary);
-box-shadow: 0 15px 30px rgba(212, 164, 24, 0.15);
+  transform: translateY(-8px);
+  border-top-color: var(--primary);
+  box-shadow: 0 15px 30px rgba(212, 164, 24, 0.15);
 }
 
 /* =========================
@@ -225,31 +236,31 @@ ICON
 ========================= */
 
 .icon {
-width: 90px;
-height: 90px;
+  width: 90px;
+  height: 90px;
 
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-border-radius: 50%;
+  border-radius: 50%;
 
-background: rgba(212, 164, 24, 0.1);
+  background: rgba(212, 164, 24, 0.1);
 
-color: var(--primary);
+  color: var(--primary);
 
-font-size: 2.5rem;
+  font-size: 2.5rem;
 
-margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .icon svg {
-stroke: var(--primary);
-transition: var(--transition);
+  stroke: var(--primary);
+  transition: var(--transition);
 }
 
 .card:hover .icon svg {
-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* =========================
@@ -257,10 +268,10 @@ CARD TITLE
 ========================= */
 
 .card h3 {
-font-family: "Playfair Display", serif;
-font-size: 2rem;
-color: var(--text);
-margin-bottom: 0.8rem;
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  color: var(--text);
+  margin-bottom: 0.8rem;
 }
 
 /* =========================
@@ -268,8 +279,8 @@ CARD TEXT
 ========================= */
 
 .card p {
-color: var(--muted);
-line-height: 1.7;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 /* =========================
@@ -277,35 +288,43 @@ FOOTER
 ========================= */
 
 footer {
-margin-top: 4rem;
-padding: 3rem 8%;
+  margin-top: 4rem;
+  padding: 3rem 8%;
 
-background: var(--surface);
+  background: var(--surface);
 
-border-top: 1px solid rgba(134, 117, 85, 0.15);
+  border-top: 1px solid rgba(134, 117, 85, 0.15);
 }
 
 .footer-container {
-max-width: 1200px;
+  max-width: 1200px;
 
-margin: 0 auto;
+  margin: 0 auto;
 
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-gap: 1rem;
+  gap: 1rem;
 }
 
 .footer-container h2 {
-font-family: "Playfair Display", serif;
-font-size: 2rem;
-color: var(--primary);
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  color: var(--primary);
 }
 
 .footer-container p {
-color: var(--muted);
-font-size: 0.95rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.menu-toggle,
+.close-menu {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* =========================
@@ -313,30 +332,61 @@ TABLETS
 ========================= */
 
 @media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 5%;
+  }
 
-.navbar {
-flex-direction: column;
-gap: 1rem;
-padding: 1rem;
-}
+  .menu-toggle {
+    display: block;
+    font-size: 2rem;
+    color: var(--text);
+  }
 
-.logo-container h2 {
-font-size: 2.4rem;
-}
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2rem;
+    padding-top: 5rem;
+    padding-left: 2rem;
+    box-shadow: var(--shadow-lg);
+    transition: right 0.3s ease;
+    z-index: 1100;
+  }
 
-.nav-links {
-gap: 1.2rem;
-}
+  .nav-links.open {
+    right: 0;
+  }
 
-main {
-padding-top: 14rem;
-padding-left: 6%;
-padding-right: 6%;
-}
+  .close-menu {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: var(--text);
+  }
 
-main h1 {
-font-size: clamp(2.5rem, 10vw, 4rem);
-}
+  .logo-container h2 {
+    font-size: 2.4rem;
+  }
+
+  main {
+    padding-top: 8rem;
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  main h1 {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
 }
 
 /* =========================
@@ -344,31 +394,30 @@ SMALL PHONES
 ========================= */
 
 @media (max-width: 480px) {
+  .logo-container h2 {
+    font-size: 2rem;
+  }
 
-.logo-container h2 {
-font-size: 2rem;
-}
+  .logo-badge {
+    width: 42px;
+    height: 42px;
+  }
 
-.logo-badge {
-width: 42px;
-height: 42px;
-}
+  main {
+    padding-top: 13rem;
+  }
 
-main {
-padding-top: 13rem;
-}
+  .card {
+    padding: 1.8rem;
+  }
 
-.card {
-padding: 1.8rem;
-}
+  .icon {
+    width: 70px;
+    height: 70px;
+    font-size: 2rem;
+  }
 
-.icon {
-width: 70px;
-height: 70px;
-font-size: 2rem;
-}
-
-.card h3 {
-font-size: 1.5rem;
-}
+  .card h3 {
+    font-size: 1.5rem;
+  }
 }
