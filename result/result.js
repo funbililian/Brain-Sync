@@ -1,38 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const storedResults = localStorage.getItem("quizResults");
 
-    const storedResults = localStorage.getItem("quizResults");
+  // Redirect if no results exist
+  if (!storedResults) {
+    window.location.href = "../index.html";
+    return;
+  }
 
-    // Redirect if no results exist
-    if (!storedResults) {
-        window.location.href = "../index.html";
-        return;
-    }
+  const results = JSON.parse(storedResults);
 
-    const results = JSON.parse(storedResults);
+  // ===================================
+  // DISPLAY INCORRECT QUESTIONS
+  // ===================================
 
-    // ===================================
-    // DISPLAY INCORRECT QUESTIONS
-    // ===================================
+  const incorrectList = document.getElementById("incorrectQuestionsList");
 
-    const incorrectList =
-        document.getElementById("incorrectQuestionsList");
-
-    if (incorrectList) {
-
-        if (
-            !results.incorrectQuestions ||
-            results.incorrectQuestions.length === 0
-        ) {
-
-            incorrectList.innerHTML =
-                "<p>Perfect score! No mistakes 🎉</p>";
-
-        } else {
-
-            incorrectList.innerHTML =
-                results.incorrectQuestions
-                    .map(
-                        (item, index) => `
+  if (incorrectList) {
+    if (
+      !results.incorrectQuestions ||
+      results.incorrectQuestions.length === 0
+    ) {
+      incorrectList.innerHTML = "<p>Perfect score! No mistakes 🎉</p>";
+    } else {
+      incorrectList.innerHTML = results.incorrectQuestions
+        .map(
+          (item, index) => `
                         <div class="incorrect-card">
                             <h4>
                                 ${index + 1}. ${item.question}
@@ -48,11 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
                                 ${item.correctAnswer}
                             </p>
                         </div>
-                    `
-                    )
-                    .join("");
-        }
+                    `,
+        )
+        .join("");
     }
+  }
 
   // ===================================
   // ELEMENTS
