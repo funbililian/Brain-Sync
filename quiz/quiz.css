@@ -246,11 +246,12 @@ header {
   transition: var(--transition);
 }
 
-#prevBtn:hover {
+#prevBtn:not(:disabled):hover {
   border-color: var(--primary);
 }
 
-#prevBtn:disabled {
+#prevBtn:disabled,
+#nextBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -270,9 +271,46 @@ header {
   transition: var(--transition);
 }
 
-#nextBtn:hover {
+#nextBtn:not(:disabled):hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(212, 164, 24, 0.25);
+}
+
+/* Exit */
+#exitBtn {
+  /* flex: 1; */
+  padding: 1rem 0.9rem;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 18px;
+  background: #ef4444;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#exitBtn:hover {
+  background: rgba(239, 68, 68, 0.08);
+  color: black;
+}
+
+/* Submit */
+#submitBtn {
+  /* flex: 1; */
+  padding: 1rem 0.9rem;
+  border: none;
+  border-radius: 18px;
+  background: var(--success);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#submitBtn:hover {
+  background: rgba(239, 68, 68, 0.08);
+  color: black;
 }
 
 /* =========================
@@ -338,6 +376,13 @@ header {
 .modal-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(212, 164, 24, 0.25);
+}
+
+.secondary-btn {
+  margin-top: 1rem;
+  background: white;
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
 /* =========================

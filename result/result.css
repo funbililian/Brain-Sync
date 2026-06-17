@@ -21,13 +21,28 @@ body {
 =================================== */
 
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+
+  z-index: 1000;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+
+  padding: 20px 8%;
+
+  background: #f7f4eb;
+
+  border-bottom: 1px solid rgba(134, 117, 85, 0.15);
+
+  box-shadow: 0 4px 12px rgba(15, 12, 7, 0.05);
+}
+
+.results-page {
+  padding-top: 110px;
 }
 
 /* BrainSync LOGO */
@@ -65,9 +80,10 @@ header {
 =================================== */
 
 .results-card {
-  width: 100%;
+  width: calc(100% - 2rem);
   max-width: 420px;
   margin: 40px auto;
+
   background: #ffffff;
   border-radius: 18px;
   padding: 25px;
@@ -143,33 +159,33 @@ header {
 }
 
 .incorrect-section {
-    margin-top: 30px;
-    text-align: left;
+  margin-top: 30px;
+  text-align: left;
 }
 
 .incorrect-section h2 {
-    color: #d4a317;
-    margin-bottom: 15px;
-    font-size: 1.3rem;
+  color: #d4a317;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
 }
 
 .incorrect-card {
-    background: #fff;
-    border-left: 4px solid #d4a317;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: #fff;
+  border-left: 4px solid #d4a317;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .incorrect-card h4 {
-    margin-bottom: 10px;
-    color: #1a1a1a;
+  margin-bottom: 10px;
+  color: #1a1a1a;
 }
 
 .incorrect-card p {
-    margin-bottom: 5px;
-    color: #555;
+  margin-bottom: 5px;
+  color: #555;
 }
 
 /* ===================================
@@ -246,4 +262,28 @@ header {
   background-color: #b88f12;
   transform: translateY(-4px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ===================================
+   MOBILE
+=================================== */
+@media (max-width: 480px) {
+  .results-page {
+    padding-top: 100px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .results-card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .logo-container h2 {
+    font-size: 1.5rem;
+  }
+
+  #startQuizBtn {
+    padding: 8px 14px;
+  }
 }

@@ -40,11 +40,14 @@
         <div id="answers"></div>
       </section>
       <div class="buttons">
+        <button id="exitBtn">Exit Quiz</button>
         <button id="prevBtn">Previous</button>
-
         <button id="nextBtn">Next</button>
+        <button id="submitBtn">Submit Quiz</button>
       </div>
     </div>
+
+    <!-- Time out modal -->
     <dialog id="timeoutModal" class="modal">
       <div class="modal-content">
         <div class="modal-icon">
@@ -75,6 +78,39 @@
           and submitting your quiz answers now.
         </p>
         <button id="modalSubmitBtn" class="modal-btn">View Results</button>
+      </div>
+    </dialog>
+
+    <!-- Exit quiz confirmation modal -->
+    <dialog id="exitModal" class="modal">
+      <div class="modal-content">
+        <h2>Exit Quiz?</h2>
+
+        <p>
+          Your current quiz progress will not be saved. Are you sure you want to
+          leave?
+        </p>
+
+        <button id="continueQuizBtn" class="modal-btn">Continue Quiz</button>
+
+        <button id="confirmExitBtn" class="modal-btn secondary-btn">
+          Exit Quiz
+        </button>
+      </div>
+    </dialog>
+
+    <!-- Submission confirmation modal -->
+    <dialog id="submitModal" class="modal">
+      <div class="modal-content">
+        <h2>Submit Quiz?</h2>
+
+        <p id="submitMessage">Checking unanswered questions...</p>
+
+        <button id="cancelSubmitBtn" class="modal-btn">Continue Quiz</button>
+
+        <button id="confirmSubmitBtn" class="modal-btn secondary-btn">
+          Submit Quiz
+        </button>
       </div>
     </dialog>
 
