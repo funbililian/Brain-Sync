@@ -178,13 +178,26 @@ function attachEventListeners() {
   const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
 
+  const exitBtn = document.getElementById("exitBtn");
+  const exitModal = document.getElementById("exitModal");
+
+  const continueQuizBtn = document.getElementById("continueQuizBtn");
+
+  const confirmExitBtn = document.getElementById("confirmExitBtn");
+
+  const submitBtn = document.getElementById("submitBtn");
+
+  const submitModal = document.getElementById("submitModal");
+
+  const cancelSubmitBtn = document.getElementById("cancelSubmitBtn");
+
+  const confirmSubmitBtn = document.getElementById("confirmSubmitBtn");
+
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
       if (currentQuestion < questions.length - 1) {
         currentQuestion++;
         displayQuestion();
-      } else {
-        finishQuiz();
       }
     });
   }
@@ -195,6 +208,43 @@ function attachEventListeners() {
         currentQuestion--;
         displayQuestion();
       }
+    });
+  }
+
+  if (exitBtn) {
+    exitBtn.addEventListener("click", () => {
+      exitModal?.showModal();
+    });
+  }
+
+  if (continueQuizBtn) {
+    continueQuizBtn.addEventListener("click", () => {
+      exitModal?.close();
+    });
+  }
+
+  if (confirmExitBtn) {
+    confirmExitBtn.addEventListener("click", () => {
+      localStorage.removeItem("quizResults");
+      window.location.href = "../index.html";
+    });
+  }
+
+  if (submitBtn) {
+    submitBtn.addEventListener("click", () => {
+      showSubmitModal();
+    });
+  }
+
+  if (cancelSubmitBtn) {
+    cancelSubmitBtn.addEventListener("click", () => {
+      submitModal?.close();
+    });
+  }
+
+  if (confirmSubmitBtn) {
+    confirmSubmitBtn.addEventListener("click", () => {
+      finishQuiz();
     });
   }
 }
@@ -212,8 +262,7 @@ function updateNavigationButtons() {
   }
 
   if (nextBtn) {
-    nextBtn.textContent =
-      currentQuestion === questions.length - 1 ? "Finish Quiz" : "Next";
+    nextBtn.disabled = currentQuestion === questions.length - 1;
   }
 }
 
@@ -234,13 +283,27 @@ function calculateScore() {
     } else {
       incorrectQuestions.push({
         question: decodeHTML(question.question),
-        userAnswer: userAnswer
-          ? decodeHTML(userAnswer)
-          : "No answer selected",
+        userAnswer: userAnswer ? decodeHTML(userAnswer) : "No answer selected",
         correctAnswer: decodeHTML(question.correct_answer),
       });
     }
   });
+}
+
+// ===================================
+// SHOW SUBMIT MODAL
+// ===================================
+function showSubmitModal() {
+  const unanswered = questions.length - selectedAnswers.filter(Boolean).length;
+
+  const message =
+    unanswered > 0
+      ? `You still have ${unanswered} unanswered question${unanswered > 1 ? "s" : ""}. Are you sure you want to submit?`
+      : "You have answered all questions. Submit quiz now?";
+
+  document.getElementById("submitMessage").textContent = message;
+
+  document.getElementById("submitModal").showModal();
 }
 
 // ===================================
@@ -256,23 +319,15 @@ function finishQuiz() {
     category,
     score,
     total: questions.length,
-    percentage: Math.round(
-      (score / questions.length) * 100
-    ),
-    answered: selectedAnswers.filter(
-      answer => answer
-    ).length,
+    percentage: Math.round((score / questions.length) * 100),
+    answered: selectedAnswers.filter((answer) => answer).length,
 
     incorrectQuestions,
   };
 
-  localStorage.setItem(
-    "quizResults",
-    JSON.stringify(results)
-  );
+  localStorage.setItem("quizResults", JSON.stringify(results));
 
-  window.location.href =
-    "../result/index.html";
+  window.location.href = "../result/index.html";
 }
 
 // ===================================
